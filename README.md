@@ -26,16 +26,15 @@ GPU scripts also need `torch`, `torchvision`, `timm`, `albumentations`, `opencv-
 
 ## 1. Training (GPU)
 
-Run from the `code/` folder:
+Run from the repository folder:
 
 ```bash
-cd code
-python leverF_pipeline.py --stage cache --manifest-csv ../rsna_split_manifest.csv \
+python leverF_pipeline.py --stage cache --manifest-csv rsna_split_manifest.csv \
     --cache-dir /tmp/png_cache_f --rsna-root <RSNA competition folder>
 
-python run_chunk_F.py --chunk S  --manifest-csv ../rsna_split_manifest.csv \
+python run_chunk_F.py --chunk S  --manifest-csv rsna_split_manifest.csv \
     --cache-dir /tmp/png_cache_f --kermany-root <Kermany chest_xray folder>
-python run_chunk_F.py --chunk F4 --manifest-csv ../rsna_split_manifest.csv --cache-dir /tmp/png_cache_f
+python run_chunk_F.py --chunk F4 --manifest-csv rsna_split_manifest.csv --cache-dir /tmp/png_cache_f
 ```
 
 | Chunk | Arm | Settings |
@@ -53,7 +52,7 @@ and there is no refit. After each chunk, combine the members of the arm:
 
 ```bash
 python leverF_pipeline.py --stage evaluate --arm proposed_ce \
-    --out-root <results folder> --cache-dir /tmp/png_cache_f --manifest-csv ../rsna_split_manifest.csv
+    --out-root <results folder> --cache-dir /tmp/png_cache_f --manifest-csv rsna_split_manifest.csv
 ```
 
 GPU training is not bit-for-bit deterministic, so retrained models will differ slightly
@@ -61,7 +60,7 @@ from ours.
 
 ## 2. Results
 
-| Paper | Script (`code/`) |
+| Paper | Script |
 |---|---|
 | Tables 8-12, per-seed tests (Sections 4.1-4.4), Fig. 5 | `leverF_matched_evaluation.py` |
 | Table 13 - fusion rules | `fusion_search.py` |
